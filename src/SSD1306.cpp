@@ -94,7 +94,7 @@ void SSD1306::InitHardware()
 
 	Home();
 
-	if (type != LCD_1106_128x64)
+	if (type != LCD_1106_128x64  &&  type != LCD_1309_128x64)
 		SendCommand(SSD1306_CMD_DEACTIVATE_SCROLL);	// 0x2E
 }
 
@@ -141,6 +141,9 @@ void SSD1306::SetDataPointer(u8 page, u8 col)
 
 	if (type == LCD_1106_128x64)
 		col += 2;	// sh1106 uses columns 2..129
+
+	if (type == LCD_1309_128x64 && flip)
+		col += 4;
 
 	SendCommand(SSD1306_CMD_SET_PAGE | page);		// 0xB0 page address
 	SendCommand(SSD1306_CMD_SET_COLUMN_LOW | (col & 0xf));	// 0x00 column address lower bits
@@ -246,7 +249,7 @@ void SSD1306::SetContrast(u8 value)
 	contrast = value;
 	SendCommand(SSD1306_CMD_SET_CONTRAST_CONTROL);
 	SendCommand(value);
-	if (type != LCD_1106_128x64)	// dont fiddle vcomdeselect on 1106 displays
+	if (type != LCD_1106_128x64  &&  type != LCD_1309_128x64)	// dont fiddle vcomdeselect on 1106 displays
 		SetVCOMDeselect( value >> 8);
 }
 
