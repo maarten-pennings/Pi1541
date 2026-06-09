@@ -1778,7 +1778,8 @@ void gen_numname (
 		if (c > '9') c += 7;
 		ns[i--] = c;
 		seq /= 16;
-	} while (seq);
+	} while (seq && i > 0); // Added 'i > 0' to prevent underflow
+	/* If the loop used all slots, 'i' will be 0, but we must force a '~' at the beginning of the numeric string. */
 	ns[i] = '~';
 
 	/* Append the number */
