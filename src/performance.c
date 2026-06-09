@@ -223,7 +223,8 @@ void print_performance_counters(perf_counters_t *pct) {
 	int i;
 	uint64_t cycle_counter = pct->cycle_counter;
 	cycle_counter *= 64;
-	printf("%26s = %"PRIu64"\r\n", "cycle counter", cycle_counter);
+	//printf("%26s = %"PRIu64"\r\n", "cycle counter", cycle_counter); // This line is better but does not compile on GitHub action
+	printf("%26s = %llu\r\n", "cycle counter", cycle_counter);
 	for (i = 0; i < pct->num_counters; i++) {
 		printf("%26s = %u\r\n", type_lookup(pct->type[i]), pct->counter[i]);
 	}

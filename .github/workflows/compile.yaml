@@ -1,0 +1,33 @@
+name: Build Pi1541 firmware
+
+on:
+  push:
+    branches: [ "main", "master" ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository code
+      uses: actions/checkout@v6
+
+    - name: Install toolchain
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y \
+          binutils-arm-none-eabi \
+          gcc-arm-none-eabi \
+          libnewlib-arm-none-eabi \
+          libstdc++-arm-none-eabi-newlib
+
+    - name: Compile firmware
+      run: make
+
+    - name: Upload fimrware
+      uses: actions/upload-artifact@v7
+      with:
+        name: Pi1541-firmware
+        path: kernel.img
+        if-no-files-found: error
