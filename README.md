@@ -42,3 +42,20 @@ This will build kernel.img
 
 
 In order to build the Commodore programs from the `CBM-FileBrowser_v1.6/sources/` directory, you'll need to install the ACME cross assembler, which is available at https://github.com/meonwax/acme/
+
+
+Additions in this fork
+----------------------
+
+This fork is used in my [Pi1541 project](https://github.com/maarten-pennings/pi1541device).
+
+- Fix `warning: '__dso_handle' initialized and declared 'extern'`.
+- Fix `warning: writing 1 byte into a region of size 0`.
+- Fix activity LED (thanks to [Warshi7819](https://github.com/pi1541/Pi1541/issues/206#issuecomment-1162708867))
+- Add support for SSD1309 based OLEDs (128x64). These are compatible with CH1116. Typically used for bigger (1.54") OLEDs.
+- Added [workflow](https://github.com/maarten-pennings/Pi1541fw/blob/master/.github/workflows/compile.yaml) 
+  to GitHub to build `kernel.img`.
+- Step version to 1.25.
+
+
+(end)
