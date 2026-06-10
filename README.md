@@ -51,11 +51,25 @@ This fork is used in my [Pi1541 project](https://github.com/maarten-pennings/pi1
 
 - Fix `warning: '__dso_handle' initialized and declared 'extern'`.
 - Fix `warning: writing 1 byte into a region of size 0`.
-- Fix activity LED (thanks to [Warshi7819](https://github.com/pi1541/Pi1541/issues/206#issuecomment-1162708867))
+- Fix activity LED (thanks to [Warshi7819](https://github.com/pi1541/Pi1541/issues/206#issuecomment-1162708867)).
 - Add support for SSD1309 based OLEDs (128x64). These are compatible with CH1116. Typically used for bigger (1.54") OLEDs.
 - Added [workflow](https://github.com/maarten-pennings/Pi1541fw/blob/master/.github/workflows/compile.yaml) 
   to GitHub to build `kernel.img`.
 - Step version to 1.25.
+
+For a Pi1541 device, an SD card must be prepared. 
+It needs several files: bootloader, pi firmware, config files, commodore drive firmware and content "disks".
+This repo contains the sources of the Raspberry Pi firmware.
+There are several options to get the firmware, a file called `kernel.img`:
+
+- Follow the sections above to build on Linux.
+- On Windows, enable [WSL](https://learn.microsoft.com/en-us/windows/wsl/install) and then
+  give the above two commands `apt-get install ...` and `make`.
+- In this forked repo, there is a GitHub action, that executes the build on a GitHub cloud server.
+  Visit the "Build Pi1541 firmware" [action](https://github.com/maarten-pennings/Pi1541/actions/workflows/compile.yaml)
+  and press "Run workflow", or, easier, open (the last) one, and at the bottom find the zip file "Pi1541-firmware".
+- Finally, the easiest option, the result of the V1.25 GitHub build is attached as an asset to the
+  [release](https://github.com/maarten-pennings/Pi1541/releases).
 
 
 (end)
